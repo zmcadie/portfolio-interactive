@@ -2,7 +2,7 @@ import React from "react"
 import Avatar from "./components/Avatar"
 import styled from "styled-components"
 
-const transitionTime = 5000
+const transitionTime = 3000
 
 const bg1 = styled.div`
   background: #66dd66;
@@ -49,7 +49,7 @@ export default class App extends React.Component {
       isMoving: false,
       direction: null,
       position: 0,
-      timeout: ""
+      timeout: { isRunning: false }
     }
     this.onKeyDown = this.onKeyDown.bind(this)
     this.handleTimeout = this.handleTimeout.bind(this)
@@ -57,15 +57,15 @@ export default class App extends React.Component {
   }
 
   handleTimeout(func) {
-    const time = new Date()
+    const { isRunning, time, id } = this.state.timeout
+    const timeNow = new Date()
     let length = transitionTime
-    if (this.state.timeout.isRunning) {
-      length = time - this.state.timeout.time
-      window.clearTimeout(this.state.timeout.id)
+    if (isRunning) {
+      length = timeNow - time
+      window.clearTimeout(id)
     }
-    const isRunning = true
-    const id = window.setTimeout(func, length)
-    return { time, id, isRunning }
+    const newId = window.setTimeout(func, length)
+    return { time: timeNow - transitionTime + length, id: newId, isRunning: true }
   }
 
   changePosition(modifier) {
@@ -94,7 +94,7 @@ export default class App extends React.Component {
     const bgs = backgrounds.map((B, i) => <Bg position={i - position}><B/></Bg>)
     return (
       <div className="App">
-        <Avatar />
+        <Avatar isMoving={this.state.isMoving} direction={this.state.direction} />
         <BgContainer>{bgs}</BgContainer>
       </div>
     )
