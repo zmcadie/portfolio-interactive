@@ -1,26 +1,9 @@
 import React from "react"
 import Avatar from "./components/Avatar"
 import styled from "styled-components"
+import backgrounds from "./components/Backgrounds"
 
 const transitionTime = 3000
-
-const bg1 = styled.div`
-  background: #66dd66;
-  height: 100vh;
-  width: 100vw;
-`
-
-const bg2 = styled.div`
-  background: #dd6666;
-  height: 100vh;
-  width: 100vw;
-`
-
-const bg3 = styled.div`
-  background: #6666dd;
-  height: 100vh;
-  width: 100vw;
-`
 
 const Bg = styled.div`
   position: absolute;
@@ -28,7 +11,7 @@ const Bg = styled.div`
   left: ${p => p.position * 100}vw;
   height: 100vh;
   width: 100vw;
-  transition: all ${transitionTime/1000}s linear;
+  transition: left ${transitionTime/1000}s linear;
 `
 
 const BgContainer = styled.div`
@@ -36,19 +19,13 @@ const BgContainer = styled.div`
   width: 100vw;
 `
 
-const backgrounds = [
-  bg1,
-  bg2,
-  bg3
-]
-
 export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
       isMoving: false,
       direction: null,
-      position: 0,
+      position: 1,
       timeout: { isRunning: false }
     }
     this.onKeyDown = this.onKeyDown.bind(this)
