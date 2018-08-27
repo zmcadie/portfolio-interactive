@@ -3,7 +3,7 @@ import styled from "styled-components"
 import RockyGrassPath from "./partials/RockyGrassPath"
 
 const Bg = styled.div`
-  background: #6d6;
+  background: linear-gradient(to right, #f00, #f80);
   height: 100vh;
   width: 100vw;
 `
