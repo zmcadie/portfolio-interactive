@@ -37,7 +37,7 @@ const AvatarContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: calc(50% - 50px);
+  top: calc(50% - 20px);
   left: calc(50% - 50px);
   width: 50px;
   height: 200px;

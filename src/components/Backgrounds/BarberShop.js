@@ -8,8 +8,8 @@ const Bg = styled.div`
     #4680AB,
     #77A2BA 50%,
     #63a054 50%,
-    #83c074 calc(50% + 100px),
-    transparent calc(50% + 100px),
+    #83c074 calc(50% + 101px),
+    transparent calc(50% + 105px),
     transparent
   );
   height: 100vh;

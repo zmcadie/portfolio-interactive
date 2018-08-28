@@ -18,10 +18,10 @@ const Grass = styled.div`
   top : 0;
 `
 
-const rockOne = { left: "7vw", top: "calc(50% + 165px)" }
-const rockTwo = { left: "15vw", top: "calc(50% + 220px)", transform: "scale(-0.3, 0.5)" }
-const rockThree = { left: "45vw", top: "calc(50% + 180px)", transform: "scaleX(-1)" }
-const rockFour = { left: "85vw", top: "calc(50% + 285px)" }
+const rockOne = { left: "7vw", top: "calc(50% + 205px)" }
+const rockTwo = { left: "15vw", top: "calc(50% + 260px)", transform: "scale(-0.3, 0.5)" }
+const rockThree = { left: "45vw", top: "calc(50% + 250px)", transform: "scaleX(-1)" }
+const rockFour = { left: "85vw", top: "calc(50% + 325px)" }
 
 const RockyGrassPath = () => {
   return (
