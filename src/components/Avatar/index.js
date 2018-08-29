@@ -37,7 +37,7 @@ const AvatarContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: calc(50% - 20px);
+  top: 50%;
   left: calc(50% - 50px);
   width: 50px;
   height: 200px;
@@ -46,19 +46,37 @@ const AvatarContainer = styled.div`
   .avatar-head {
     height: 50px;
     width: 50px;
-    background: #ffff66;
+    background: linear-gradient(
+      to bottom left,
+      #ff6,
+      #ff6 50%,
+      #ee5 50%,
+      #ee5
+    );
   }
 
   .avatar-body {
     width: 50px;
     height: 65px;
-    background: #ff2255;
+    background: linear-gradient(
+      to bottom left,
+      #f25,
+      #f25 50%,
+      #e14 50%,
+      #e14
+    );
   }
 
   .avatar-legs {
     width: 50px;
     height: 85px;
-    background: #3333ff;
+    background: linear-gradient(
+      to bottom left,
+      #33f,
+      #33f 50%,
+      #22e 50%,
+      #22e
+    );
     z-index: 2;
   }
 
