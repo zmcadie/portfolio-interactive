@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Path from "./Path"
-import Rock from "./Rock"
+import { Rock } from "./MiscScenery"
 
 const Grass = styled.div`
   background: linear-gradient(

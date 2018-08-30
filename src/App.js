@@ -25,7 +25,7 @@ export default class App extends React.Component {
     this.state = {
       isMoving: false,
       direction: null,
-      position: 1,
+      position: 0,
       timeout: { isRunning: false }
     }
     this.onKeyDown = this.onKeyDown.bind(this)

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import RockyGrassPath from "./partials/RockyGrassPath"
-import Tree from "./partials/Tree"
+import { Tree } from "./partials/MiscScenery"
 
 const Bg = styled.div`
   background: linear-gradient(
