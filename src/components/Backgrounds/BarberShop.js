@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import RockyGrassPath from "./partials/RockyGrassPath"
 
 const Bg = styled.div`
@@ -15,6 +15,109 @@ const Bg = styled.div`
   height: 100vh;
   width: 100vw;
 `
+
+const barberPoleSpin = keyframes`
+  from { top: 0px; }
+  to { top: 60px; }
+`
+
+const BarberPoleContainer = styled.div`
+  background: #fbf3ef;
+  height: 100px;
+  position: absolute;
+  width: 30px;
+
+  .cap {
+    background: #fbf3ef;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0px 2px 2px -2px rgba(0,0,0,0.75);
+    height: 15px;
+    left: -1px;
+    position: absolute;
+    width: 32px;
+
+    &.top {
+      top: -15px;
+    }
+    
+    &.bottom {
+      bottom: -15px;
+      transform: rotate(180deg);
+    }
+  }
+
+  .stripe-container {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .stripe {
+    animation: ${barberPoleSpin} 4s linear 0s infinite;
+    height: 15px;
+    position: relative;
+    transform: skewY(-25deg) translateY(-100px);
+
+    &.red {
+      background: #E24C3B;
+    }
+    
+    &.blue {
+      background: #0088E0;
+    }
+
+    &.white {
+      background: #fbf3ef;
+    }
+  }
+
+  &::before,
+  &::after {
+    border-top: 2px solid grey;
+    content: "";
+    position: absolute;
+    left: ${p => p.right ? "-10px" : "30px"};
+    width: 10px;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+`
+
+const BarberPole = (props) => {
+  return (
+    <BarberPoleContainer {...props}>
+      <div className="stripe-container">
+        <div className="stripe red"></div>
+        <div className="stripe white"></div>
+        <div className="stripe blue"></div>
+        <div className="stripe white"></div>
+        <div className="stripe red"></div>
+        <div className="stripe white"></div>
+        <div className="stripe blue"></div>
+        <div className="stripe white"></div>
+        <div className="stripe red"></div>
+        <div className="stripe white"></div>
+        <div className="stripe blue"></div>
+        <div className="stripe white"></div>
+        <div className="stripe red"></div>
+        <div className="stripe white"></div>
+        <div className="stripe blue"></div>
+        <div className="stripe white"></div>
+      </div>
+      <div className="cap top"></div>
+      <div className="cap bottom"></div>
+    </BarberPoleContainer>
+  )
+}
 
 const BarberShop = styled.div`
   background: #C38145;
@@ -156,6 +259,8 @@ const Shop = () => {
       <div className="window left"></div>
       <div className="window right"></div>
       <div className="door"></div>
+      <BarberPole style={{top: "175px", left: "-40px"}}></BarberPole>
+      <BarberPole style={{top: "175px", right: "-40px"}} right={true}></BarberPole>
     </BarberShop>
   )
 }
