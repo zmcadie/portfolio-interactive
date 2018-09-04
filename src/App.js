@@ -11,7 +11,7 @@ const Bg = styled.div`
   left: ${p => p.position * 100}vw;
   height: 100vh;
   width: 100vw;
-  transition: left ${transitionTime/1000}s linear;
+  transition: ${p => p.isMoving ? `left ${transitionTime/1000}s linear` : ""};
 `
 
 const BgContainer = styled.div`
@@ -68,7 +68,7 @@ export default class App extends React.Component {
 
   render() {
     const { position } = this.state
-    const bgs = backgrounds.map((B, i) => <Bg position={i - position}><B/></Bg>)
+    const bgs = backgrounds.map((B, i) => <Bg isMoving={this.state.isMoving} position={i - position}><B /></Bg>)
     return (
       <div className="App">
         <Avatar isMoving={this.state.isMoving} direction={this.state.direction} />

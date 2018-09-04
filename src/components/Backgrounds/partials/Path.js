@@ -85,20 +85,32 @@ const PathContainer = styled.div`
   }
 `
 
-const Path = () => {
-  const windowWidth = document.body.clientWidth
-  return (
-    <PathContainer windowWidth={windowWidth}>
-      <div className="dirt a"></div>
-      <div className="dirt b"></div>
-      <div className="dirt c"></div>
-      <div className="dirt d"></div>
-      <div className="dirt e"></div>
-      <div className="dirt f"></div>
-      <div className="dirt g"></div>
-      <div className="dirt h"></div>
-    </PathContainer>
-  )
+class Path extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      width: document.body.clientWidth
+    }
+    this.resize = this.resize.bind(this)
+  }
+  resize(e) {
+    this.setState({width: document.body.clientWidth})
+  }
+  render() {
+    window.addEventListener("resize", this.resize)
+    return (
+      <PathContainer windowWidth={this.state.width}>
+        <div className="dirt a"></div>
+        <div className="dirt b"></div>
+        <div className="dirt c"></div>
+        <div className="dirt d"></div>
+        <div className="dirt e"></div>
+        <div className="dirt f"></div>
+        <div className="dirt g"></div>
+        <div className="dirt h"></div>
+      </PathContainer>
+    )
+  }
 }
 
 export default Path
