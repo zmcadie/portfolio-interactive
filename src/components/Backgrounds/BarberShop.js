@@ -119,7 +119,7 @@ const BarberPole = (props) => {
   )
 }
 
-const BarberShop = styled.div`
+const Barber = styled.div`
   background: #C38145;
   height: 375px;
   left: calc(50% - 300px);
@@ -253,7 +253,7 @@ const BarberShop = styled.div`
 
 const Shop = () => {
   return (
-    <BarberShop>
+    <Barber>
       <div className="lintel"></div>
       <div className="sign">BARBER SHOP</div>
       <div className="window left"></div>
@@ -261,11 +261,11 @@ const Shop = () => {
       <div className="door"></div>
       <BarberPole style={{top: "175px", left: "-40px"}}></BarberPole>
       <BarberPole style={{top: "175px", right: "-40px"}} right={true}></BarberPole>
-    </BarberShop>
+    </Barber>
   )
 }
 
-const Start = () => {
+const BarberShop = () => {
   return (
     <Bg>
       <RockyGrassPath />
@@ -274,4 +274,4 @@ const Start = () => {
   )
 }
 
-export default Start
+export default BarberShop
