@@ -68,7 +68,13 @@ export default class App extends React.Component {
 
   render() {
     const { position } = this.state
-    const bgs = backgrounds.map((B, i) => <Bg isMoving={this.state.isMoving} position={i - position}><B /></Bg>)
+    const bgs = backgrounds.map((B, i) => {
+      return (
+        <Bg isMoving={this.state.isMoving} position={i - position}>
+          <B isActive={i - position === 0 && !this.state.isMoving} />
+        </Bg>
+      )
+    })
     return (
       <div className="App">
         <Avatar isMoving={this.state.isMoving} direction={this.state.direction} />
