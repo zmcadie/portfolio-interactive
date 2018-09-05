@@ -58,8 +58,13 @@ export default class App extends React.Component {
   }
 
   onKeyDown(e) {
-    const { keyCode } = e
-    keyCode === 37 ? this.changePosition(-1) : keyCode === 39 ? this.changePosition(1) : null
+    const { key } = e
+    const { position, isMoving } = this.state
+    const { actions: backgroundActions } = backgrounds[position]
+    const actions = isMoving ? {} : {...backgroundActions}
+    actions.ArrowLeft = () => this.changePosition(-1)
+    actions.ArrowRight = () => this.changePosition(1)
+    if (actions[key]) actions[key]()
   }
 
   componentDidMount() {
@@ -71,7 +76,7 @@ export default class App extends React.Component {
     const bgs = backgrounds.map((B, i) => {
       return (
         <Bg isMoving={this.state.isMoving} position={i - position}>
-          <B isActive={i - position === 0 && !this.state.isMoving} />
+          <B.component isActive={i - position === 0 && !this.state.isMoving} />
         </Bg>
       )
     })

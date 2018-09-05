@@ -16,12 +16,16 @@ const Bg = styled.div`
   width: 100vw;
 `
 
-const Education = () => {
+const Component = () => {
   return (
     <Bg>
       <RockyGrassPath />
     </Bg>
   )
+}
+
+const Education = {
+  component: Component
 }
 
 export default Education

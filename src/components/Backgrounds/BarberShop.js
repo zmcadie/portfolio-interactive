@@ -265,13 +265,20 @@ const Shop = () => {
   )
 }
 
-const BarberShop = () => {
+const Component = () => {
   return (
     <Bg>
       <RockyGrassPath />
       <Shop />
     </Bg>
   )
+}
+
+const BarberShop = {
+  component: Component,
+  actions: {
+    ArrowUp: () => console.log('logged')
+  }
 }
 
 export default BarberShop
