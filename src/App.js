@@ -2,6 +2,8 @@ import React from "react"
 import Avatar from "./components/Avatar"
 import styled from "styled-components"
 import backgrounds from "./components/Backgrounds"
+import CharacterCustomization from './pages/CharacterCustomization'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 const transitionTime = 3000
 
@@ -19,7 +21,7 @@ const BgContainer = styled.div`
   width: 100vw;
 `
 
-export default class App extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -85,10 +87,35 @@ export default class App extends React.Component {
       )
     })
     return (
-      <div className="App">
+      <div className="Main">
         <Avatar isMoving={this.state.isMoving} direction={this.state.direction} />
         <BgContainer>{bgs}</BgContainer>
       </div>
+    )
+  }
+}
+
+export default class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      avatar: {
+        head: "#ff6",
+        body: "#f25",
+        legs: "#33f"
+      }
+    }
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Route exact path="/" render={() => <Redirect to="/p/1" />} />
+          <Route path="/p/:position" component={Main} />
+          <Route path="/character" component={CharacterCustomization} />
+        </div>
+      </Router>
     )
   }
 }
