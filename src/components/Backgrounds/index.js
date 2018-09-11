@@ -1,4 +1,3 @@
-import styled from "styled-components"
 import Start from "./Start"
 import BarberShop from "./BarberShop"
 import Education from "./Education"

@@ -265,19 +265,36 @@ const Shop = () => {
   )
 }
 
-const Component = () => {
-  return (
-    <Bg>
-      <RockyGrassPath />
-      <Shop />
-    </Bg>
-  )
-}
+class BarberShop extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      customize: false
+    }
+    this.onKeyDown = this.onKeyDown.bind(this)
+  }
 
-const BarberShop = {
-  component: Component,
-  actions: {
-    ArrowUp: () => console.log('logged')
+  componentDidMount() {
+    window.addEventListener("keydown", this.onKeyDown)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKeyDown)
+  }
+
+  onKeyDown(e) {
+    const { key } = e
+    const { isActive } = this.props
+    if (isActive && key === "ArrowUp") this.props.history.push("./character")
+  }
+
+  render() {
+    return (
+      <Bg>
+        <RockyGrassPath />
+        <Shop />
+      </Bg>
+    )
   }
 }
 

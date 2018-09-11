@@ -17,7 +17,7 @@ const Bg = styled.div`
   width: 100vw;
 `
 
-const Component = () => {
+const Start = () => {
   return (
     <Bg>
       <Tree style={{ top: "calc(50% - 60px)", transform: "scale(0.5)" }} />
@@ -26,10 +26,6 @@ const Component = () => {
       <RockyGrassPath />
     </Bg>
   )
-}
-
-const Start = {
-  component: Component
 }
 
 export default Start

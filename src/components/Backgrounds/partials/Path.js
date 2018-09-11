@@ -93,11 +93,16 @@ class Path extends React.Component {
     }
     this.resize = this.resize.bind(this)
   }
+  componentDidMount() {
+    window.addEventListener("resize", this.resize)
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resize)
+  }
   resize(e) {
     this.setState({width: document.body.clientWidth})
   }
   render() {
-    window.addEventListener("resize", this.resize)
     return (
       <PathContainer windowWidth={this.state.width}>
         <div className="dirt a"></div>

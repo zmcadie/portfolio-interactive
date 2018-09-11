@@ -59,11 +59,10 @@ export default class App extends React.Component {
 
   onKeyDown(e) {
     const { key } = e
-    const { position, isMoving } = this.state
-    const { actions: backgroundActions } = backgrounds[position]
-    const actions = isMoving ? {} : {...backgroundActions}
-    actions.ArrowLeft = () => this.changePosition(-1)
-    actions.ArrowRight = () => this.changePosition(1)
+    const actions = {
+      ArrowLeft: () => this.changePosition(-1),
+      ArrowRight: () => this.changePosition(1)
+    }
     if (actions[key]) actions[key]()
   }
 
@@ -71,12 +70,16 @@ export default class App extends React.Component {
     window.addEventListener("keydown", this.onKeyDown)
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKeyDown)
+  }
+
   render() {
     const { position } = this.state
     const bgs = backgrounds.map((B, i) => {
       return (
-        <Bg isMoving={this.state.isMoving} position={i - position}>
-          <B.component isActive={i - position === 0 && !this.state.isMoving} />
+        <Bg key={i} isMoving={this.state.isMoving} position={i - position}>
+          <B isActive={i - position === 0 && !this.state.isMoving} history={this.props.history} />
         </Bg>
       )
     })
