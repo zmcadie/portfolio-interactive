@@ -20,12 +20,12 @@ const BgContainer = styled.div`
 `
 
 export default class App extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       isMoving: false,
       direction: null,
-      position: 0,
+      position: props.match.params.position * 1,
       timeout: { isRunning: false }
     }
     this.onKeyDown = this.onKeyDown.bind(this)
@@ -67,6 +67,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    window.history.replaceState({}, null, "/")
     window.addEventListener("keydown", this.onKeyDown)
   }
 

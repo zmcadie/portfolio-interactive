@@ -5,7 +5,7 @@ const CharacterCustomization = () => {
   return (
     <div>
       <div>Customize your character</div>
-      <Link to="/">Back to the adventure</Link>
+      <Link to="/p/0">Back to the adventure</Link>
     </div>
   )
 }

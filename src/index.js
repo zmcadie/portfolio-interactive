@@ -4,13 +4,14 @@ import './index.css';
 import App from './App';
 import CharacterCustomization from './pages/CharacterCustomization'
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 const Index = () => {
   return (
     <Router>
       <div>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" render={() => <Redirect to="/p/1" />} />
+        <Route path="/p/:position" component={App} />
         <Route path="/character" component={CharacterCustomization} />
       </div>
     </Router>

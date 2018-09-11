@@ -285,7 +285,7 @@ class BarberShop extends React.Component {
   onKeyDown(e) {
     const { key } = e
     const { isActive } = this.props
-    if (isActive && key === "ArrowUp") this.props.history.push("./character")
+    if (isActive && key === "ArrowUp") this.props.history.push("/character")
   }
 
   render() {
