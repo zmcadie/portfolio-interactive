@@ -33,6 +33,8 @@ class Main extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this)
     this.handleTimeout = this.handleTimeout.bind(this)
     this.changePosition = this.changePosition.bind(this)
+    
+    window.history.replaceState({}, null, "/")
   }
 
   handleTimeout(func) {
@@ -69,7 +71,6 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    window.history.replaceState({}, null, "/")
     window.addEventListener("keydown", this.onKeyDown)
   }
 
@@ -88,7 +89,7 @@ class Main extends React.Component {
     })
     return (
       <div className="Main">
-        <Avatar isMoving={this.state.isMoving} direction={this.state.direction} />
+        <Avatar avatar={this.props.avatar} isMoving={this.state.isMoving} direction={this.state.direction} />
         <BgContainer>{bgs}</BgContainer>
       </div>
     )
@@ -100,11 +101,16 @@ export default class App extends React.Component {
     super()
     this.state = {
       avatar: {
-        head: "#ff6",
-        body: "#f25",
-        legs: "#33f"
+        head: "#FFF800",
+        body: "#EB144C",
+        legs: "#0693E3"
       }
     }
+    this.updateAvatar = this.updateAvatar.bind(this)
+  }
+
+  updateAvatar(avatar) {
+    this.setState({ avatar })
   }
 
   render() {
@@ -112,8 +118,8 @@ export default class App extends React.Component {
       <Router>
         <div>
           <Route exact path="/" render={() => <Redirect to="/p/1" />} />
-          <Route path="/p/:position" component={Main} />
-          <Route path="/character" component={CharacterCustomization} />
+          <Route path="/p/:position" render={p => <Main {...p} avatar={this.state.avatar} />} />
+          <Route path="/character" render={() => <CharacterCustomization avatar={this.state.avatar} update={this.updateAvatar} />} />
         </div>
       </Router>
     )

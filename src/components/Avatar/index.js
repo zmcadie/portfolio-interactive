@@ -44,40 +44,58 @@ const AvatarContainer = styled.div`
   z-index: 2;
 
   .avatar-head {
+    position: relative;
     height: 50px;
     width: 50px;
-    background: linear-gradient(
-      to bottom left,
-      #ff6,
-      #ff6 50%,
-      #ee5 50%,
-      #ee5
-    );
+    background-color: ${p => p.head};
+
+    &::after {
+      border-left: 50px solid #0001;
+      border-top: 50px solid transparent;
+      bottom: 0;
+      content: "";
+      height: 0;
+      position: absolute;
+      right: 0;
+      width: 0;
+    }
   }
 
   .avatar-body {
+    position: relative;
     width: 50px;
     height: 65px;
-    background: linear-gradient(
-      to bottom left,
-      #f25,
-      #f25 50%,
-      #e14 50%,
-      #e14
-    );
+    background-color: ${p => p.body};
+
+    &::after {
+      border-left: 50px solid #0001;
+      border-top: 65px solid transparent;
+      bottom: 0;
+      content: "";
+      height: 0;
+      position: absolute;
+      right: 0;
+      width: 0;
+    }
   }
 
   .avatar-legs {
+    position: relative;
     width: 50px;
     height: 85px;
-    background: linear-gradient(
-      to bottom left,
-      #33f,
-      #33f 50%,
-      #22e 50%,
-      #22e
-    );
+    background-color: ${p => p.legs};
     z-index: 2;
+
+    &::after {
+      border-left: 50px solid #0001;
+      border-top: 85px solid transparent;
+      bottom: 0;
+      content: "";
+      height: 0;
+      position: absolute;
+      right: 0;
+      width: 0;
+    }
   }
 
   .avatar-shadow {
@@ -107,9 +125,9 @@ const AvatarContainer = styled.div`
   }
 `
 
-const Avatar = ({ isMoving, direction }) => {
+const Avatar = ({ isMoving, direction, avatar, style }) => {
   return (
-    <AvatarContainer className={isMoving ? direction === "right" ? "movingright" : "movingleft" : ""}>
+    <AvatarContainer {...avatar} className={isMoving ? direction === "right" ? "movingright" : "movingleft" : ""}>
       <div className="avatar-head" />
       <div className="avatar-body" />
       <div className="avatar-legs" />
