@@ -117,7 +117,7 @@ export default class App extends React.Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" render={() => <Redirect to="/p/1" />} />
+          <Route exact path="/" render={() => <Redirect to="/p/0" />} />
           <Route path="/p/:position" render={p => <Main {...p} avatar={this.state.avatar} />} />
           <Route path="/character" render={() => <CharacterCustomization avatar={this.state.avatar} update={this.updateAvatar} />} />
         </div>

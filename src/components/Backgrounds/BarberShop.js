@@ -1,6 +1,7 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 import RockyGrassPath from "./partials/RockyGrassPath"
+import ActionContainer from "../ActionContainer"
 
 const Bg = styled.div`
   background: linear-gradient(
@@ -289,10 +290,12 @@ class BarberShop extends React.Component {
   }
 
   render() {
+    const { isActive } = this.props
     return (
       <Bg>
         <RockyGrassPath />
         <Shop />
+        <ActionContainer isActive={isActive} actions={[{key: "⬆", action: <span>Customize Avatar</span>}]} />
       </Bg>
     )
   }

@@ -98,7 +98,7 @@ const CharacterCustomization = ({ update, avatar }) => {
     legs: { "ui:widget": "color", "ui:options": { label: false } }
   }
   const CustomFieldTemplate = (props) => {
-    const {id, classNames, label, help, displayLabel, description, errors, children} = props;
+    const {id, classNames, label, help, displayLabel, errors, children} = props;
     return (
       <div className={classNames}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
