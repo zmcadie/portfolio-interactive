@@ -1,5 +1,6 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
+import { Tree } from "./partials/MiscScenery"
 import RockyGrassPath from "./partials/RockyGrassPath"
 import ActionContainer from "../ActionContainer"
 import Directions from "../Directions"
@@ -294,6 +295,11 @@ class BarberShop extends React.Component {
     const { isActive } = this.props
     return (
       <Bg>
+        <Tree style={{ top: "calc(50% - 60px)", left: "20vw", transform: "scale(0.5)" }} />
+        <Tree style={{ top: "calc(50% - 110px)", left: "5vw", transform: "scale(0.8)" }} />
+        <Tree style={{ top: "calc(50% - 125px)", left: "10vw" }} />
+        <Tree style={{ top: "calc(50% - 105px)", left: "85vw", transform: "scale(0.7)" }} />
+        <Tree style={{ top: "calc(50% - 115px)", left: "80vw", transform: "scale(0.9)" }} />
         <RockyGrassPath />
         <Shop />
         <ActionContainer isActive={isActive} actions={[{key: "⬆", action: <span>Customize Avatar</span>}]} />

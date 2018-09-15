@@ -21,6 +21,49 @@ const BgContainer = styled.div`
   width: 100vw;
 `
 
+const ClickModal = styled.div`
+  cursor: default;
+  display: ${p => p.isOpen ? 'initial' : 'none'};
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #0008;
+  z-index: 3;
+  padding: 25vh 25vw;
+  color: #efefef;
+  text-shadow: -1px 1px #000;
+  font-size: 18px;
+`
+
+const ModalEsc = styled.div`
+  cursor: pointer;
+  background: #efefef;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #444;
+  text-shadow: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &::after {
+    content: 'x';
+    position: absolute;
+    line-height: 18px;
+    width: 20px;
+    top: 0;
+    left: 0;
+    text-align: center;
+  }
+`
+
 class Main extends React.Component {
   constructor(props) {
     super(props)
@@ -28,9 +71,11 @@ class Main extends React.Component {
       isMoving: false,
       direction: null,
       position: props.match.params.position * 1,
-      timeout: { isRunning: false }
+      timeout: { isRunning: false },
+      clickModalIsOpen: false
     }
     this.onKeyDown = this.onKeyDown.bind(this)
+    this.onClick = this.onClick.bind(this)
     this.handleTimeout = this.handleTimeout.bind(this)
     this.changePosition = this.changePosition.bind(this)
     
@@ -63,19 +108,28 @@ class Main extends React.Component {
 
   onKeyDown(e) {
     const { key } = e
+    if (this.state.clickModalIsOpen && key !== "Escape") return false
     const actions = {
       ArrowLeft: () => this.changePosition(-1),
-      ArrowRight: () => this.changePosition(1)
+      ArrowRight: () => this.changePosition(1),
+      Escape: () => this.setState({clickModalIsOpen: false})
     }
     if (actions[key]) actions[key]()
   }
 
+  onClick() {
+    if (this.state.isMoving) return false
+    this.setState({ clickModalIsOpen: !this.state.clickModalIsOpen })
+  }
+
   componentDidMount() {
     window.addEventListener("keydown", this.onKeyDown)
+    window.addEventListener("mousedown", this.onClick)
   }
 
   componentWillUnmount() {
     window.removeEventListener("keydown", this.onKeyDown)
+    window.removeEventListener("mousedown", this.onClick)
   }
 
   render() {
@@ -83,7 +137,7 @@ class Main extends React.Component {
     const bgs = backgrounds.map((B, i) => {
       return (
         <Bg key={i} isMoving={this.state.isMoving} position={i - position}>
-          <B isActive={i - position === 0 && !this.state.isMoving} history={this.props.history} />
+          <B isActive={i - position === 0 && !this.state.isMoving && !this.state.clickModalIsOpen} history={this.props.history} />
         </Bg>
       )
     })
@@ -91,6 +145,12 @@ class Main extends React.Component {
       <div className="Main">
         <Avatar avatar={this.props.avatar} isMoving={this.state.isMoving} direction={this.state.direction} />
         <BgContainer>{bgs}</BgContainer>
+        <ClickModal isOpen={this.state.clickModalIsOpen}>
+          <ModalEsc />
+          <p>To navigate this path use your 'left' and 'right' arrow keys.</p>
+          <p>Descriptions will appear in the bottom corners giving you an idea of what lies in each direction.</p>
+          <p>Some parts of the path have other actions you can take, these will appear in the top corners of the screen.</p>
+        </ClickModal>
       </div>
     )
   }
