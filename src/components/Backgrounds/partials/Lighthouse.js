@@ -14,7 +14,7 @@ const LighthouseContainer = styled.div`
   position: absolute;
 
   .top {
-    background: black;
+    background: #333;
     border-top-left-radius: 135px;
     border-top-right-radius: 135px;
     height: 70px;
@@ -23,7 +23,7 @@ const LighthouseContainer = styled.div`
   }
 
   .lantern {
-    border: 20px solid black;
+    border: 20px solid #333;
     border-bottom-width: 20px;
     border-top-width: 0px;
     height: 55px;
@@ -55,9 +55,10 @@ const LighthouseContainer = styled.div`
   }
 
   .deck {
-    background: black;
+    background: #333;
     height: 20px;
-    width: 215px;
+    margin-left: 20px;
+    width: 175px;
   }
 
   .tower-container {
@@ -67,7 +68,7 @@ const LighthouseContainer = styled.div`
   }
 
   .tower {
-    border-bottom: 150px solid white;
+    border-bottom: 150px solid #F0FAF6;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     height: 0;
@@ -75,7 +76,7 @@ const LighthouseContainer = styled.div`
     width: 190px;
 
     &.one {
-      border-bottom-color: black;
+      border-bottom-color: #333;
       margin-left: 30px;
       width: 130px;
     }
@@ -86,7 +87,7 @@ const LighthouseContainer = styled.div`
     }
 
     &.three {
-      border-bottom-color: black;
+      border-bottom-color: #333;
       margin-left: 10px;
       width: 170px;
     }
