@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import RockyGrassPath from "./partials/RockyGrassPath"
+import Lighthouse from "./partials/Lighthouse"
 
 const Bg = styled.div`
   background: linear-gradient(
@@ -19,6 +20,7 @@ const Bg = styled.div`
 const Education = () => {
   return (
     <Bg>
+      <Lighthouse style={{transform: "scale(0.5)", top: "calc(50% - 483px)", left: "6%"}} />
       <RockyGrassPath />
     </Bg>
   )

@@ -117,8 +117,8 @@ class Main extends React.Component {
     if (actions[key]) actions[key]()
   }
 
-  onClick() {
-    if (this.state.isMoving) return false
+  onClick(e) {
+    if (this.state.isMoving || e.which !== 1) return false
     this.setState({ clickModalIsOpen: !this.state.clickModalIsOpen })
   }
 
@@ -177,7 +177,7 @@ export default class App extends React.Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" render={() => <Redirect to="/p/1" />} />
+          <Route exact path="/" render={() => <Redirect to="/p/2" />} />
           <Route path="/p/:position" render={p => <Main {...p} avatar={this.state.avatar} />} />
           <Route path="/character" render={() => <CharacterCustomization avatar={this.state.avatar} update={this.updateAvatar} />} />
         </div>
