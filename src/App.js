@@ -107,14 +107,14 @@ class Main extends React.Component {
   }
 
   onKeyDown(e) {
-    const { key } = e
-    if (this.state.clickModalIsOpen && key !== "Escape") return false
+    const { keyCode } = e
+    if (this.state.clickModalIsOpen && keyCode !== 27) return false
     const actions = {
-      ArrowLeft: () => this.changePosition(-1),
-      ArrowRight: () => this.changePosition(1),
+      "37": () => this.changePosition(-1),
+      "39": () => this.changePosition(1),
       Escape: () => this.setState({clickModalIsOpen: false})
     }
-    if (actions[key]) actions[key]()
+    if (actions[keyCode]) actions[keyCode]()
   }
 
   onClick(e) {
