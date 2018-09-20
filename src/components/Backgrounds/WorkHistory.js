@@ -127,8 +127,8 @@ const WorkItems = styled.div`
   }
 `
 
-const History = ({ showHistory }) => (
-  <WorkItems showHistory={showHistory}>
+const History = ({ showHistory, style }) => (
+  <WorkItems showHistory={showHistory} style={style}>
     <div className="work-item main">
       <div className="work-item-title">SaaSquatch</div>
       <div className="work-item-aside">|&nbsp;&nbsp;&nbsp;Victoria, BC&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Sept 2017 - Sept 2018</div>
@@ -188,6 +188,7 @@ class WorkHistory extends React.Component {
       <Bg>
         <WaveContainer>
           <Wave />
+          <History showHistory={showHistory && isActive} style={{transform: 'rotate(180deg) scaleX(-1)', color: '#efefef88', textShadow: 'none'}}/>
         </WaveContainer>
         <RockyGrassPath />
         <History showHistory={showHistory && isActive} />
