@@ -25,17 +25,15 @@ const ArrowContainer = styled.div`
   bottom: 25px;
   ${p => p.side}: 50px;
   width: 185px;
+  opacity: ${p => p.isActive ? 1 : 0};
+  transition: opacity 0.5s;
 `
 
-const Directions = ({ isActive, content, side }) => {
-  return isActive
-  ? (
-    <ArrowContainer side={side}>
-      <Content>{content}</Content>
-      <HalfArrow side={side} />
-    </ArrowContainer>
-  )
-  : ''
-}
+const Directions = ({ isActive, content, side }) => (
+  <ArrowContainer isActive={isActive} side={side}>
+    <Content>{content}</Content>
+    <HalfArrow side={side} />
+  </ArrowContainer>
+)
 
 export default Directions

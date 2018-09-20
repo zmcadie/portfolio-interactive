@@ -31,21 +31,19 @@ const KeyContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: ${p => p.isActive ? 1 : 0};
+  transition: opacity 0.5s;
 `
 
 const ActionContainer = ({ actions, isActive }) => {
-  const keys = actions.map((a, i) => {
-    return isActive 
-    ? (
-      <KeyContainer key={`action-${i}`}>
-        <Key wide={!!a.wide}>
-          {a.key}
-        </Key>
-        {a.action}
-      </KeyContainer>
-    )
-    : ''
-  })
+  const keys = actions.map((a, i) => (
+    <KeyContainer isActive={isActive} key={`action-${i}`}>
+      <Key wide={!!a.wide}>
+        {a.key}
+      </Key>
+      {a.action}
+    </KeyContainer>
+  ))
   return <ActionsContainer>{keys}</ActionsContainer>
 }
 
