@@ -193,7 +193,7 @@ class WorkHistory extends React.Component {
         <RockyGrassPath />
         <History showHistory={showHistory && isActive} />
         <Directions isActive={isActive} side="left" content="Work Experience" />
-        <Directions isActive={isActive} side="right" content="Projects" />
+        {/* <Directions isActive={isActive} side="right" content="Projects" /> */}
         <ActionContainer isActive={isActive} actions={[{key: "W", action: <span>{showHistory ? 'Hide' : 'View'} Work History</span>}]} />
       </Bg>
     )
