@@ -1,0 +1,36 @@
+[
+  {
+    "company": "Lighthouse Labs",
+    "location": "Toronto, ON",
+    "start": "Sept 2019",
+    "end": "present",
+    "title": "Web Development Mentor",
+    "bullets": [
+      "Mentor students in full-stack web development as they work through cutting edge curriculum",
+      "Provide assistance by pair programming, debugging issues, and answering technical questions"
+    ]
+  },
+  {
+    "company": "Fintros",
+    "location": "Toronto, ON",
+    "start": "Apr 2019",
+    "end": "present",
+    "title": "Full-stack Developer",
+    "bullets": [
+      "Helped design and build a new portal for a subset of users",
+      "Transitioned from legacy front-end tech stack to facilitate a need for complex front-end applications"
+    ]
+  },
+  {
+    "company": "SaaSquatch",
+    "location": "Victoria, BC",
+    "start": "Sept 2017",
+    "end": "Sept 2018",
+    "title": "Front-end Developer",
+    "bullets": [
+      "Part of the front-end development team designing and building UI for the customer portal",
+      "UI / UX design for a platform upgrade",
+      "Implemented a reusable component library for internal use"
+    ]
+  }
+]

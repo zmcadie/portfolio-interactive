@@ -4,6 +4,8 @@ import RockyGrassPath from "./partials/RockyGrassPath"
 import ActionContainer from "../ActionContainer"
 import Directions from "../Directions"
 
+const history = require("../../data/workHistory.json")
+
 const Bg = styled.div`
   background: linear-gradient(
     to bottom,
@@ -45,11 +47,13 @@ const Wave = styled.div`
   z-index: 1;
 `
 
-const WorkItems = styled.div`
+const WorkItemsList = styled.div`
+  box-sizing: border-box;
   color: #efefef;
   font-size: 22px;
   height: calc(50vh + 15px);
   overflow: hidden;
+  padding-top: 75px;
   position: absolute;
   text-shadow: -1px 1px #444;
   top: 0;
@@ -57,58 +61,50 @@ const WorkItems = styled.div`
 
   .work-item {
     left: calc(50vw - 250px);
-    position: absolute;
-    top: ${p => p.showHistory ? '15vh' : 'calc(50vh + 100px)'};
+    margin-bottom: 20px;
+    position: relative;
+    top: ${p => p.showHistory ? '0' : '600px'};
     transition: top 1s ease-in-out;
     width: 550px;
 
-    &:nth-child(2) {
-      top: ${p => p.showHistory ? 'calc(15vh + 155px)' : 'calc(50vh + 100px)'};
-      transition: top 1s ease-in-out 1s;
+    .work-item-header {
+      /* display: flex; */
+    }
 
-      .work-item-aside {
-        left: 148px;
-      }
+    &:nth-child(2) {
+      transition: top 1s ease-in-out 1s;
     }
 
     &:nth-child(3) {
-      top: ${p => p.showHistory ? 'calc(15vh + 195px)' : 'calc(50vh + 100px)'};
       transition: top 1s ease-in-out 1.5s;
-
-      .work-item-aside {
-        left: 140px;
-      }
     }
 
     &:nth-child(4) {
-      top: ${p => p.showHistory ? 'calc(15vh + 235px)' : 'calc(50vh + 100px)'};
       transition: top 1s ease-in-out 2s;
-
-      .work-item-aside {
-        left: 130px;
-      }
-    }
-
-    &:not(.main) {
-      .work-item-title {
-        font-size: 18px;
-      }
-
-      .work-item-aside {
-        top: 5px;
-      }
     }
   }
 
-  .work-item-title {
+  .work-item-company {
     font-size: 26px;
   }
 
   .work-item-aside {
     font-size: 12px;
-    left: 155px;
-    position: absolute;
-    top: 11px;
+    position: relative;
+    bottom: 3px;
+    margin-left: 15px;
+
+    span {
+      padding: 0 15px;
+      position: relative;
+
+      ::before {
+        content: "|";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
   }
 
   .work-item-subheader {
@@ -127,35 +123,24 @@ const WorkItems = styled.div`
   }
 `
 
+const WorkItem = ({ item }) => (
+  <div className="work-item">
+    <div className="work-item-header">
+      <span className="work-item-company">{ item.company }</span>
+      <span className="work-item-aside">
+        <span>{ item.location }</span>
+        <span>{ `${item.start} - ${item.end}` }</span>
+      </span>
+    </div>
+    <div className="work-item-subheader">{ item.title }</div>
+    { item.bullets ? item.bullets.map(bul => <div className="work-item-description">{ bul }</div>) : "" }
+  </div>
+)
+
 const History = ({ showHistory, style }) => (
-  <WorkItems showHistory={showHistory} style={style}>
-    <div className="work-item main">
-      <div className="work-item-title">SaaSquatch</div>
-      <div className="work-item-aside">|&nbsp;&nbsp;&nbsp;Victoria, BC&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Sept 2017 - Sept 2018</div>
-      <div className="work-item-subheader">Front-End Developer</div>
-      <div className="work-item-description">
-        Part of the front-end development team designing and building UI for the customer portal
-      </div>
-      <div className="work-item-description">
-        UI / UX design for a platform upgrade
-      </div>
-      <div className="work-item-description">
-        Implemented a reusable component library for internal use
-      </div>
-    </div>
-    <div className="work-item">
-      <div className="work-item-title">Lifestyle Markets</div>
-      <div className="work-item-aside">|&nbsp;&nbsp;&nbsp;Department Manager&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Victoria, BC&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;2016 - 2017</div>
-    </div>
-    <div className="work-item">
-      <div className="work-item-title">Public Outreach</div>
-      <div className="work-item-aside">|&nbsp;&nbsp;&nbsp;Supervisor&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Victoria, BC&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;2014 - 2016</div>
-    </div>
-    <div className="work-item">
-      <div className="work-item-title">Self-Employed</div>
-      <div className="work-item-aside">|&nbsp;&nbsp;&nbsp;Musician&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Victoria, BC&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;2013 - 2015</div>
-    </div>
-  </WorkItems>
+  <WorkItemsList showHistory={showHistory} style={style}>
+    { history.map(item => <WorkItem item={ item } />) }
+  </WorkItemsList>
 )
 
 class WorkHistory extends React.Component {
